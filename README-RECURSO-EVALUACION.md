@@ -4,7 +4,7 @@ API REST para gestionar Alumnos, Profesores, Prácticas y Exámenes (incluyendo 
 
 ---
 
-## 🚀 1. Creación de la Estructura (Comandos CLI)
+## 1. Creación de la Estructura (Comandos CLI)
 
 Para empezar, generé la estructura base de todas las entidades agrupadas dentro de la carpeta `src/evaluacion/` para mantener limpio el proyecto.
 
@@ -38,7 +38,7 @@ npx nest generate resource evaluacion/profesor-disena-practica --no-spec
 
 ---
 
-## 🧠 2. Código e Importaciones Clave (TypeORM)
+## 2. Código e Importaciones Clave (TypeORM)
 
 Para evitar que el _linter_ (ESLint) de mi editor me lanzara falsos positivos y errores por problemas de referencia e importaciones circulares (un clásico al cruzar entidades), añadí la instrucción `/* eslint-disable */` arriba del todo del código de las entidades. Así queda impecable visualmente.
 
@@ -130,7 +130,7 @@ imports: [TypeOrmModule.forFeature([AlumnoRealizaPractica])];
 
 ---
 
-## 🧪 3. Guía de Pruebas y Resultados (Postman / Thunder Client)
+## 3. Guía de Pruebas y Resultados (Postman / Thunder Client)
 
 Al arrancar el servidor (`npm run start:dev`) en local, la base de datos se sincroniza (`synchronize: true`) y crea estas 7 tablas mágicamente en MySQL.
 
