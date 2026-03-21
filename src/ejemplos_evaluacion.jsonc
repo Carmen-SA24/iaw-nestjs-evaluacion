@@ -1,0 +1,92 @@
+[
+  // TABLA ALUMNO
+
+  {
+    "nif": "11223344A",
+    "grupo": "1ASIR",
+    "nombre": "Laura",
+    "apellido1": "Gómez",
+    "apellido2": "Pérez"
+  },
+
+  {
+    "nif": "55667788B",
+    "grupo": "2ASIR",
+    "nombre": "David",
+    "apellido1": "Sánchez",
+    "apellido2": "Lorca"
+  },
+
+
+  // TABLA PROFESOR
+
+  {
+    "nif": "12312312X",
+    "nombre": "Roberto",
+    "apellido1": "Díaz",
+    "apellido2": "Soto"
+  },
+
+  {
+    "nif": "45645645Y",
+    "nombre": "María",
+    "apellido1": "Fernández",
+    "apellido2": "Blanco"
+  },
+
+
+  // TABLA PRACTICA
+
+  {
+    "titulo": "Despliegue Docker V1",
+    "dificultad": "Alta"
+  },
+
+  {
+    "titulo": "Configuración Servidor IIS",
+    "dificultad": "Media"
+  },
+
+
+  // TABLA EXAMEN TEORICO
+
+  {
+    "titulo": "Examen Tipo Test IAW",
+    "numero_preguntas": 40,
+    "fecha": "2026-03-25",
+    "profesorId": 1
+  },
+
+  {
+    "titulo": "Evaluación Sistemas Base",
+    "numero_preguntas": 25,
+    "fecha": "2026-03-28",
+    "profesorId": 2
+  },
+
+  // ===============================================
+  // PRUEBAS DE FILTROS Y RELACIONES INTERMEDIAS
+  // ===============================================
+
+  // ALUMNO REALIZA PRÁCTICA
+  {
+    "id_alumno": 1,
+    "id_practica": 1,
+    "fecha": "2026-03-18",
+    "nota": 8.5
+  },
+
+  // ALUMNO HACE EXAMEN 
+  {
+    "id_alumno": 1,
+    "id_examen_teorico": 1,
+    "nota": 9.0
+  },
+
+  // PROFESOR DISEÑA PRÁCTICA
+  {
+    "id_profesor": 1,
+    "id_practica": 1,
+    "fecha": "2026-03-20"
+  }
+]
