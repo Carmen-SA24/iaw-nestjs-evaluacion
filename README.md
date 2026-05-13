@@ -4,7 +4,7 @@ API REST desarrollada con **NestJS 11** + **TypeORM** + **MySQL** durante el cur
 
 ---
 
-## 📌 Módulo Actual: Biblioteca (en desarrollo)
+## 📌 Módulo Actual: Biblioteca
 
 API para gestionar una biblioteca con **Autores** y **Libros** (relación 1:N).
 
@@ -66,6 +66,22 @@ POST /biblioteca/libro
   "autorId": 1
 }
 ```
+
+### ⚠️ Nota sobre las rutas
+
+Los controladores usan `@Controller('biblioteca/autor')` y `@Controller('biblioteca/libro')`. En el video el profesor inicialmente los creó sin el prefijo `biblioteca/` y luego tuvo que corregirlo. Nuestra implementación ya tiene las rutas correctas.
+
+---
+
+## 🔐 Próximo tema: Autenticación con JWT
+
+El profesor introducirá **JSON Web Tokens (JWT)** para:
+- Control de acceso por perfiles (admin vs usuario normal)
+- Generación de tokens firmados al hacer login
+- Protección de rutas de administración
+- Uso del header `Authorization` en las peticiones
+
+Librería a instalar: `@nestjs/jwt` y `@nestjs/passport`
 
 ---
 
