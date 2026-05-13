@@ -17,6 +17,7 @@ import { ProveedorModule } from './recambios/proveedor/proveedor.module';
 import { ProveedorSuministraPiezaModule } from './recambios/proveedor-suministra-pieza/proveedor-suministra-pieza.module';
 import { EvaluacionModule } from './evaluacion/evaluacion.module';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { BibliotecaModule } from './biblioteca/biblioteca.module';
     ProveedorSuministraPiezaModule,
     EvaluacionModule,
     BibliotecaModule,
+    AuthModule,
   ],
 
   controllers: [AppController],
