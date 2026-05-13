@@ -19,6 +19,7 @@ import { EvaluacionModule } from './evaluacion/evaluacion.module';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { TiendaModule } from './tienda/tienda.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { UserModule } from './user/user.module';
     BibliotecaModule,
     AuthModule,
     UserModule,
+    TiendaModule,
   ],
 
   controllers: [AppController],
