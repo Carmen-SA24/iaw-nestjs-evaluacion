@@ -4,7 +4,66 @@ API REST desarrollada con **NestJS 11** + **TypeORM** + **MySQL** durante el cur
 
 ---
 
-## 📌 Módulo Actual: Biblioteca
+## 📌 Módulo Actual: Tienda Online
+
+API para gestionar una **tienda online** con **Productos** y **Carrito de compra** (relación N:N usuario↔producto con fecha de pago).
+
+### Comandos ejecutados
+
+```bash
+# 1. Crear módulo raíz tienda
+npx nest generate module tienda
+
+# 2. Crear recurso producto dentro de tienda
+npx nest generate resource tienda/producto --no-spec
+
+# 3. Crear recurso carrito dentro de tienda
+npx nest generate resource tienda/carrito --no-spec
+```
+
+### Entidades
+
+| Entidad | Endpoint | Descripción |
+|---|---|---|
+| [`Producto`](src/tienda/producto/entities/producto.entity.ts) | `/tienda/producto` | CRUD de productos con filtro de búsqueda |
+| [`Carrito`](src/tienda/carrito/entities/carrito.entity.ts) | `/tienda/carrito` | Carrito de compra (N:N usuario↔producto) |
+
+### Producto
+
+**Campos:** `id`, `nombre`, `descripcion`, `precio`, `imagen`, `stock`, `disponible`
+
+```bash
+# Endpoints
+POST   /tienda/producto              # Crear producto (requiere JWT)
+GET    /tienda/producto              # Listar todos los productos
+GET    /tienda/producto?query=texto  # Filtrar por nombre o descripción
+GET    /tienda/producto/:id          # Buscar producto por ID
+PUT    /tienda/producto/:id          # Actualizar producto (requiere JWT)
+DELETE /tienda/producto/:id          # Eliminar producto (requiere JWT)
+```
+
+### Carrito
+
+**Campos:** `id`, `usuario` (User), `producto` (Producto), `cantidad`, `fechaPago`, `pagado`
+
+```bash
+# Endpoints
+POST   /tienda/carrito               # Añadir producto al carrito (requiere JWT)
+GET    /tienda/carrito               # Listar todos los items (admin)
+GET    /tienda/carrito/mio           # Ver mi carrito activo (requiere JWT)
+GET    /tienda/carrito/:id           # Buscar item por ID
+PUT    /tienda/carrito/:id           # Actualizar cantidad (requiere JWT)
+DELETE /tienda/carrito/:id           # Eliminar item del carrito (requiere JWT)
+POST   /tienda/carrito/pagar         # Procesar pago del carrito (requiere JWT)
+```
+
+> 💡 El carrito detecta duplicados: si ya existe un producto no pagado del mismo usuario, incrementa la cantidad en lugar de crear un duplicado.
+
+---
+
+## 📚 Módulos Anteriores
+
+### Biblioteca
 
 API para gestionar una biblioteca con **Autores** y **Libros** (relación 1:N).
 
