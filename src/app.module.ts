@@ -18,6 +18,7 @@ import { ProveedorSuministraPiezaModule } from './recambios/proveedor-suministra
 import { EvaluacionModule } from './evaluacion/evaluacion.module';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
 import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { AuthModule } from './auth/auth.module';
     EvaluacionModule,
     BibliotecaModule,
     AuthModule,
+    UserModule,
   ],
 
   controllers: [AppController],

@@ -156,6 +156,53 @@ POST /auth/login
 // Respuesta: { "access_token": "eyJhbGciOiJIUzI1NiIs..." }
 ```
 
+**Ver perfil (autenticado):**
+```bash
+curl -X GET http://localhost:3000/user/profile \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..."
+```
+
+### Variables de entorno adicionales
+
+```env
+JWT_SECRET=secreto_super_seguro    # Clave para firmar tokens
+JWT_EXPIRES_IN=60m                 # Tiempo de expiración del token
+```
+
+> ⚠️ En producción, `JWT_SECRET` debe ser una clave segura y estar en `.env`, nunca en el código.
+
+---
+
+## 👤 Recurso User
+
+Recurso independiente para consultar el perfil del usuario autenticado. Creado con `nest generate resource user --no-spec`.
+
+### Comandos ejecutados
+
+```bash
+npx nest generate resource user --no-spec
+```
+
+### Archivos
+
+| Archivo | Descripción |
+|---|---|
+| [`user.module.ts`](src/user/user.module.ts) | Módulo con TypeOrmModule.forFeature (usa entidad de auth) |
+| [`user.controller.ts`](src/user/user.controller.ts) | Endpoint `GET /user/profile` protegido con JWT |
+| [`user.service.ts`](src/user/user.service.ts) | Métodos `findByEmail()`, `create()`, `findById()` |
+
+### Endpoint
+
+```bash
+GET /user/profile    # Ver perfil del usuario autenticado (requiere JWT)
+```
+
+> ⚠️ El recurso `user` usa la misma entidad `User` que `auth` para evitar duplicidad de tablas. El registro de usuarios se hace a través de `POST /auth/register`.
+  "password": "123456"
+}
+// Respuesta: { "access_token": "eyJhbGciOiJIUzI1NiIs..." }
+```
+
 **Crear libro (autenticado):**
 ```bash
 curl -X POST http://localhost:3000/biblioteca/libro \
