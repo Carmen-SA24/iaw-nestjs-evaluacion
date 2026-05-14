@@ -13,9 +13,11 @@ import { CarritoService } from './carrito.service';
 import { CreateCarritoDto } from './dto/create-carrito.dto';
 import { UpdateCarritoDto } from './dto/update-carrito.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { AdminGuard } from '../../auth/guards/admin.guard';
 
 // Controlador de rutas para el carrito de compra
-// Las rutas de escritura requieren autenticación JWT
+// Las rutas de administración requieren JWT + AdminGuard
+// Las rutas de usuario requieren solo JwtAuthGuard
 @Controller('tienda/carrito')
 export class CarritoController {
   constructor(private readonly carritoService: CarritoService) {}
@@ -27,7 +29,8 @@ export class CarritoController {
     return this.carritoService.create(createCarritoDto, req.user.id);
   }
 
-  // Lista todos los items del carrito (administración)
+  // Lista todos los items del carrito (solo administración)
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Get()
   findAll() {
     return this.carritoService.findAll();
