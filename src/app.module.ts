@@ -3,20 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MensajesModule } from './mensajes/mensajes.module';
-import { PostsModule } from './posts/posts.module';
-import { UsersModule } from './users/users.module';
-import { ProductsModule } from './products/products.module';
-import { SizesModule } from './sizes/sizes.module';
-import { ProductSizeModule } from './product-size/product-size.module';
-import { Productos2Module } from './productos2/productos2.module';
-import { TallasModule } from './tallas/tallas.module';
-import { CategoriaModule } from './recambios/categoria/categoria.module';
-import { PiezaModule } from './recambios/pieza/pieza.module';
-import { ProveedorModule } from './recambios/proveedor/proveedor.module';
-import { ProveedorSuministraPiezaModule } from './recambios/proveedor-suministra-pieza/proveedor-suministra-pieza.module';
-import { EvaluacionModule } from './evaluacion/evaluacion.module';
-import { BibliotecaModule } from './biblioteca/biblioteca.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TiendaModule } from './tienda/tienda.module';
@@ -36,23 +22,9 @@ import { TiendaModule } from './tienda/tienda.module';
         database: config.get<string>('DB_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: (config.get<string>('DB_SYNC') === 'true'),
-        logging: false, // evitar mostrar información sensible en logs
+        logging: false,
       }),
     }),
-    MensajesModule,
-    PostsModule,
-    UsersModule,
-    ProductsModule,
-    SizesModule,
-    ProductSizeModule,
-    Productos2Module,
-    TallasModule,
-    CategoriaModule,
-    PiezaModule,
-    ProveedorModule,
-    ProveedorSuministraPiezaModule,
-    EvaluacionModule,
-    BibliotecaModule,
     AuthModule,
     UserModule,
     TiendaModule,

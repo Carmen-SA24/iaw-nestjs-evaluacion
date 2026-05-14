@@ -283,39 +283,7 @@ JWT_EXPIRES_IN=60m                 # Tiempo de expiración del token
 
 ## 📚 Módulos Anteriores
 
-### Evaluación (recurso de evaluación)
-
-Sistema de gestión educativa con 7 entidades bajo [`src/evaluacion/`](src/evaluacion/).
-
-**Entidades base (CRUD):**
-- [`Alumno`](src/evaluacion/alumno/) — `GET/POST/PUT/DELETE /alumno`
-- [`Profesor`](src/evaluacion/profesor/) — `GET/POST/PUT/DELETE /profesor`
-- [`Practica`](src/evaluacion/practica/) — `GET/POST/PUT/DELETE /practica`
-- [`ExamenTeorico`](src/evaluacion/examen-teorico/) — `GET/POST/PUT/DELETE /examen-teorico` (con FK a Profesor)
-
-**Entidades intermedias (N:M con datos extra):**
-- [`AlumnoRealizaPractica`](src/evaluacion/alumno-realiza-practica/) — `GET/POST/PUT/DELETE /alumno-realiza-practica` + filtro `GET .../alumno/:idAlumno`
-- [`AlumnoHaceExamen`](src/evaluacion/alumno-hace-examen/) — `GET/POST/PUT/DELETE /alumno-hace-examen`
-- [`ProfesorDisenaPractica`](src/evaluacion/profesor-disena-practica/) — `GET/POST/PUT/DELETE /profesor-disena-practica`
-
-### Recambios (almacén)
-
-Sistema de gestión de recambios con 4 entidades bajo [`src/recambios/`](src/recambios/):
-- [`Categoria`](src/recambios/categoria/) — CRUD
-- [`Pieza`](src/recambios/pieza/) — CRUD + consulta avanzada con QueryBuilder
-- [`Proveedor`](src/recambios/proveedor/) — CRUD
-- [`ProveedorSuministraPieza`](src/recambios/proveedor-suministra-pieza/) — CRUD (N:N con datos extra)
-
-### Otros módulos de práctica
-
-- [`posts`](src/posts/) — CRUD de posts con relación 1:N a users
-- [`users`](src/users/) — CRUD de usuarios
-- [`products`](src/products/) — CRUD de productos
-- [`sizes`](src/sizes/) — CRUD de tallas
-- [`product-size`](src/product-size/) — Relación N:N producto-talla
-- [`productos2`](src/productos2/) — CRUD de productos (versión 2)
-- [`tallas`](src/tallas/) — CRUD de tallas (versión 2)
-- [`mensajes`](src/mensajes/) — Módulo de mensajes
+> ℹ️ Los módulos de práctica (`biblioteca`, `posts`, `users`, `products`, `sizes`, `product-size`, `productos2`, `tallas`, `recambios`, `evaluacion`, `mensajes`) se han eliminado del proyecto. Pueden recuperarse desde el historial de Git si es necesario.
 
 ---
 
