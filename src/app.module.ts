@@ -7,9 +7,13 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TiendaModule } from './tienda/tienda.module';
 
+// Módulo principal de la aplicación
+// Configura la conexión a MySQL, carga variables de entorno e importa los módulos funcionales
 @Module({
   imports: [
+    // Carga variables de entorno desde el archivo .env
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    // Configura la conexión a MySQL usando variables de entorno
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -25,9 +29,10 @@ import { TiendaModule } from './tienda/tienda.module';
         logging: false,
       }),
     }),
-    AuthModule,
-    UserModule,
-    TiendaModule,
+    // Módulos funcionales de la aplicación
+    AuthModule,   // Autenticación (registro, login, JWT)
+    UserModule,   // Gestión de usuarios
+    TiendaModule, // Tienda online (productos y carrito)
   ],
 
   controllers: [AppController],

@@ -7,6 +7,7 @@ import { User } from './entities/user.entity';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 
+// Servicio de autenticación: gestiona registro, login y validación de usuarios
 @Injectable()
 export class AuthService {
   constructor(
@@ -15,20 +16,21 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  // Registra un nuevo usuario: verifica que el email no exista, crea el usuario y devuelve token JWT
   async register(registerDto: RegisterDto) {
     const { email, password, nombre } = registerDto;
 
-    // Verificar si el usuario ya existe
+    // Verifica si el email ya está registrado
     const existingUser = await this.userRepository.findOne({ where: { email } });
     if (existingUser) {
       throw new ConflictException('El email ya está registrado');
     }
 
-    // Crear nuevo usuario (la contraseña se cifra automáticamente con @BeforeInsert)
+    // Crea el usuario (la contraseña se cifra automáticamente con @BeforeInsert en la entidad)
     const user = this.userRepository.create({ email, password, nombre });
     await this.userRepository.save(user);
 
-    // Generar token JWT
+    // Genera y devuelve un token JWT con los datos del usuario
     const payload = { email: user.email, sub: user.id, nombre: user.nombre, rol: user.rol };
     return {
       message: 'Usuario registrado correctamente',
@@ -36,22 +38,23 @@ export class AuthService {
     };
   }
 
+  // Inicia sesión: verifica credenciales y devuelve token JWT
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
 
-    // Buscar usuario por email
+    // Busca el usuario por email
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) {
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
-    // Verificar contraseña
+    // Compara la contraseña recibida con la almacenada (cifrada con bcrypt)
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
-    // Generar token JWT
+    // Genera y devuelve un token JWT
     const payload = { email: user.email, sub: user.id, nombre: user.nombre, rol: user.rol };
     return {
       message: 'Login correcto',
@@ -59,6 +62,8 @@ export class AuthService {
     };
   }
 
+  // Valida las credenciales de un usuario (usado por LocalStrategy)
+  // Devuelve el usuario sin la contraseña si es válido, o null si no
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userRepository.findOne({ where: { email } });
     if (user && (await bcrypt.compare(password, user.password))) {
